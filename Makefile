@@ -13,14 +13,14 @@ EC					=	\033[0m
 #########START_SOURCES#########
 ###############################
 
-# #####AST_TREE_CREATION#####
-# AST_TREE_NAME		:=	create_tree.c add_nodes.c constructors.c constructors_2.c create_node.c \
-# 						free_tree.c
-# AST_TREE_PATH		:=	ast/ast_create_tree/
-# AST_TREE			:=	$(addprefix $(AST_TREE_PATH), $(AST_TREE_NAME))
+#####HELPERS#####
+HELPERS_NAME		:=	ft_calloc.c ft_memset.c ft_isspace.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_atoi.c \
+						ft_isdigit.c
+HELPERS_PATH		:=	helpers/
+HELPERS				:=	$(addprefix $(HELPERS_PATH), $(HELPERS_NAME))
 
 
-SRCS				:=	main.c
+SRCS				:=	main.c check_args.c check_arg.c $(HELPERS)
 SRCS_PATH			:=	srcs/
 
 ###############################
@@ -38,6 +38,7 @@ $(NAME): $(OBJS_PATH) $(OBJS)
 
 $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
+	@mkdir -p $(OBJS_PATH)$(HELPERS_PATH)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@$(CC) $(FLAGS) -c $< -o $@

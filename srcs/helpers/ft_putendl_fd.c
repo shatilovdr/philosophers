@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/05 22:11:10 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/19 14:08:04 by dshatilo         ###   ########.fr       */
+/*   Created: 2023/10/31 17:53:49 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/03/05 22:41:55 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/philosophers.h"
+#include "../../headers/philosophers.h"
 
-int	main(int argc, char **argv)
+void	ft_putendl_fd(char *s, int fd)
 {
-	t_philo	*philo;
-
-	philo = ft_calloc(1, sizeof(t_philo));
-	if (!philo)
-	{
-		printf("malloc() error occured.\nexit.\n");
-		return (1);
-	}
-	check_args(argc, argv, philo);
-	return (0);
+	if (!s || !fd)
+		return ;
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }
