@@ -8,10 +8,11 @@ FLAGS			:=	-Wall -Wextra -Werror -g
 # COLORS
 GREEN			:=	\033[32m
 GREY			:=	\033[90m
+RED				:=	\033[41m
 EC				:=	\033[0m
 
 # HELPERS
-HELPERS_NAME	:=	
+HELPERS_NAME	:=	ft_calloc.c ft_atoi.c ft_isdigit.c ft_isspace.c
 HELPERS_PATH	:=	helpers/
 HELPERS			:=	$(addprefix $(HELPERS_PATH), $(HELPERS_NAME))
 
@@ -39,7 +40,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS_PATH) $(OBJS) $(HEADERS)
 	@cc $(FLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
-	@echo "$(GREEN)\n$(NAME) created successfully!$(EC)"
+	@echo "$(GREEN)$(NAME) created successfully!$(EC)"
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -51,11 +52,11 @@ $(OBJS_PATH):
 
 clean:
 	@rm -rf $(OBJS_PATH)
-	@echo "$(RED)*.o files removed!$(EC)"
+	@echo "$(RED)Object files removed!$(EC)"
 
 fclean: clean
 	@rm -rf $(NAME)
-	@echo "$(RED)\nFull clean up completed successfully!$(EC)"
+	@echo "$(RED)Full clean up completed successfully!$(EC)"
 
 re: fclean all
 

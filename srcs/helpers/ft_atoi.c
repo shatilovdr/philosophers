@@ -6,11 +6,11 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 19:10:02 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/14 22:30:57 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:59:11 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/philosophers.h"
+#include "../../headers/helpers.h"
 
 int	ft_atoi(const char *str)
 {

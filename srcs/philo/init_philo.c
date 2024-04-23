@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   init_philo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 15:31:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/19 13:35:15 by dshatilo         ###   ########.fr       */
+/*   Created: 2024/04/23 14:10:14 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/04/23 14:54:26 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/philosophers.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	init_philo(int argc, char **argv)
 {
-	size_t	i;
+	t_input	*input;
 
-	i = 0;
-	while (i < n)
-		*((char *)s + i++) = (unsigned char)c;
-	return (s);
+	check_args(argc, argv, &input);
 }

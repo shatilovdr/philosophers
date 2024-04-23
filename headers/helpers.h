@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   helpers.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/05 22:11:10 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/22 17:27:50 by dshatilo         ###   ########.fr       */
+/*   Created: 2024/04/23 11:44:41 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/04/23 15:08:14 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/philosophers.h"
+#ifndef HELPERS_H
+# define HELPERS_H
 
-int	main(int argc, char **argv)
-{
-	t_philo		*philo;
+# include <string.h>
+# include <stdlib.h>
+# include <limits.h>
+# include <stdbool.h>
+// # include <unistd.h>
 
-	check_args(argc, argv, &philo);
-	return (0);
-}
+void	*ft_calloc(size_t count, size_t size);
+int		ft_atoi(const char *str);
+int		ft_isdigit(int ch);
+int		ft_isspace(int ch);
+
+#endif

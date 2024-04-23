@@ -6,11 +6,9 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:40:29 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/03/05 22:53:16 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:01:12 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../../headers/philosophers.h"
 
 int	ft_isdigit(int ch)
 {

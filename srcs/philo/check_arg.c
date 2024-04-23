@@ -6,13 +6,13 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 23:16:01 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/19 14:00:35 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:44:48 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/philosophers.h"
+#include "../../headers/philosophers.h"
 
-t_bool	check_atoi(int num, char *str);
+static bool	check_atoi(int num, char *str);
 
 int	check_arg(char *arg)
 {
@@ -24,7 +24,7 @@ int	check_arg(char *arg)
 	return (num);
 }
 
-t_bool	check_atoi(int num, char *str)
+static bool	check_atoi(int num, char *str)
 {
 	while (ft_isspace(*str))
 		str++;

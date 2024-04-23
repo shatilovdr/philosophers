@@ -6,11 +6,11 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 19:33:34 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/19 13:34:12 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:59:37 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/philosophers.h"
+#include "../../headers/helpers.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {
@@ -24,6 +24,6 @@ void	*ft_calloc(size_t count, size_t size)
 	mem = malloc(num);
 	if (!mem)
 		return (0);
-	ft_memset(mem, 0, num);
+	memset(mem, 0, num);
 	return (mem);
 }
