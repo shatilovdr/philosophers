@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 22:11:10 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/23 15:08:35 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:34:48 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	main(int argc, char **argv)
 {
-	init_philo(argc, argv);
+	t_philo	philo;
+
+	philo = (t_philo){0};
+	init_philo(argc, argv, &philo);
 	return (0);
 }
 

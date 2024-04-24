@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:14:41 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/23 15:08:22 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/04/24 19:00:57 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,25 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-typedef struct s_input
-{
-	int	n_philo;
-	int	t_die;
-	int	t_eat;
-	int	t_sleep;
-	int	n_meals;
-}	t_input;
+typedef pthread_mutex_t	t_mutex;
 
-void	init_philo(int argc, char **argv);
-void	check_args(int argc, char **argv, t_input **philo);
+typedef struct s_philo
+{
+	int		n_philo;
+	int		t_die;
+	int		t_eat;
+	int		t_sleep;
+	int		n_meals;
+	bool	isready;
+	t_mutex	*m_isready;
+	t_mutex	*forks;
+}	t_philo;
+
+bool	init_philo(int argc, char **argv, t_philo *philo);
+bool	check_args(int argc, char **argv, t_philo *philo);
 int		check_arg(char *arg);
+bool	init_mutexes(t_mutex **mutexes, int num);
+void	destroy_mutexes(t_mutex *mutexes, int num);
 
 // void	check_args(int argc, char **argv, t_philo **philo);
 // int		ft_atoi(const char *str);

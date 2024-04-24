@@ -7,7 +7,6 @@ FLAGS			:=	-Wall -Wextra -Werror -g
 
 # COLORS
 GREEN			:=	\033[32m
-GREY			:=	\033[90m
 RED				:=	\033[41m
 EC				:=	\033[0m
 
@@ -17,7 +16,7 @@ HELPERS_PATH	:=	helpers/
 HELPERS			:=	$(addprefix $(HELPERS_PATH), $(HELPERS_NAME))
 
 # PHILO
-PHILO_NAME		:=	main.c init_philo.c check_args.c check_arg.c
+PHILO_NAME		:=	main.c init_philo.c check_args.c check_arg.c init_destroy_mutexes.c
 PHILO_PATH		:=	philo/
 PHILO			:=	$(addprefix $(PHILO_PATH), $(PHILO_NAME))
 
