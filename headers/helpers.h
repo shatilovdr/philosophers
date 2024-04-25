@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:44:41 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/23 15:08:14 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:42:49 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,4 @@ void	*ft_calloc(size_t count, size_t size);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int ch);
 int		ft_isspace(int ch);
-
 #endif
