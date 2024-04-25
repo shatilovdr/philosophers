@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   run_simulation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/05 22:11:10 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/25 18:18:08 by dshatilo         ###   ########.fr       */
+/*   Created: 2024/04/25 14:53:46 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/04/25 17:51:28 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/philosophers.h"
 
-int	main(int argc, char **argv)
+bool	run_simulation(t_table *table)
 {
-	t_table	table;
-	bool	status;
+	int			i;
+	pthread_t	*threads;
 
-	table = (t_table){0};
-	status = init_table(argc, argv, &table);
-	if (status == true)
-		status = run_simulation(&table);
-	return (status != true);
+	threads = table->threads;
+	i = 0;
+	while (i < table->n_philo)
+	{
+		if (pthread_create(&threads[i], NULL, run_philosopher,
+				(void *) &((table->philo)[i])) != 0)
+			break ;
+		i++;
+	}
+	table->isready = true;
+	i = 0;
+	while (i < table->n_philo)
+	{
+		pthread_join(threads[i], NULL);
+		i++;
+	}
+	return (true);
 }

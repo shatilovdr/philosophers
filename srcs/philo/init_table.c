@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:10:14 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/25 16:38:09 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:22:14 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,15 @@ static bool	init_philosophers(t_table *table)
 	int		i;
 
 	n_philo = table->n_philo;
-	philo = ft_calloc(n_philo + 1, sizeof(t_philo));
+	philo = ft_calloc(n_philo, sizeof(t_philo));
 	if (!philo)
 		return (false);
 	i = 0;
 	while (i < table->n_philo)
 	{
-		(&philo[i])->l_fork = &(table->forks[i]);
-		(&philo[i])->r_fork = &(table->forks[(i - 1 + n_philo) % n_philo]);
+		philo[i].l_fork = &(table->forks[i]);
+		philo[i].r_fork = &(table->forks[(i - 1 + n_philo) % n_philo]);
+		philo[i].table = table;
 		i++;
 	}
 	table->philo = philo;
@@ -56,7 +57,7 @@ static bool	init_philosophers(t_table *table)
 
 static bool	init_threads(t_table *table)
 {
-	table->threads = ft_calloc(table->n_philo + 1, sizeof(t_philo));
+	table->threads = ft_calloc(table->n_philo, sizeof(t_philo));
 	if (!table->threads)
 		return (false);
 	return (true);
