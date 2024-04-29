@@ -17,7 +17,7 @@ HELPERS			:=	$(addprefix $(HELPERS_PATH), $(HELPERS_NAME))
 
 # PHILO
 PHILO_NAME		:=	main.c init_table.c check_args.c check_arg.c init_destroy_mutexes.c free_table.c \
-					run_simulation.c run_philosopher.c 
+					run_simulation.c run_philosopher.c get_timestamp.c 
 PHILO_PATH		:=	philo/
 PHILO			:=	$(addprefix $(PHILO_PATH), $(PHILO_NAME))
 

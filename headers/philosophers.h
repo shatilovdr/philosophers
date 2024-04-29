@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:14:41 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/25 18:16:41 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/04/29 18:30:47 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_table	t_table;
 
 typedef struct s_philo
 {
+	int				id;
 	t_mutex			*l_fork;
 	t_mutex			*r_fork;
 	int				n_meals;
@@ -38,6 +39,7 @@ struct	s_table
 	int			t_sleep;
 	int			n_meals;
 	bool		isready;
+	bool		isfinished; //
 	t_mutex		*m_isready;
 	t_mutex		*forks;
 	t_philo		*philo;
@@ -52,5 +54,6 @@ void	destroy_mutexes(t_mutex *mutexes, int num);
 void	free_table(t_table *table);
 bool	run_simulation(t_table *table);
 void	*run_philosopher(void *arg);
+size_t	get_timestamp(void);
 
 #endif
