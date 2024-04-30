@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:14:41 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/29 18:30:47 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:17:50 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ struct	s_table
 	int			t_eat;
 	int			t_sleep;
 	int			n_meals;
-	bool		isready;
+	size_t		start;
 	bool		isfinished; //
-	t_mutex		*m_isready;
+	t_mutex		*m_start;
 	t_mutex		*forks;
 	t_philo		*philo;
 	pthread_t	*threads;
@@ -55,5 +55,17 @@ void	free_table(t_table *table);
 bool	run_simulation(t_table *table);
 void	*run_philosopher(void *arg);
 size_t	get_timestamp(void);
+
+# ifndef EATING
+#  define EATING "\033[42mis eating\n\033[0m"
+# endif
+
+# ifndef SLEEPING
+#  define SLEEPING "\033[44mis sleeping\n\033[0m"
+# endif
+
+# ifndef THINKING
+#  define THINKING "\033[45mis thinking\n\033[0m"
+# endif
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:10:14 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/29 17:46:31 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:12:35 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	init_table(int argc, char **argv, t_table *table)
 	if (status == true)
 		status = init_mutexes(&(table->forks), table->n_philo);
 	if (status == true)
-		status = init_mutexes(&(table->m_isready), 1);
+		status = init_mutexes(&(table->m_start), 1);
 	if (status == true)
 		status = init_philosophers(table);
 	if (status == true)

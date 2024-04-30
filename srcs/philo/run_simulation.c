@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 14:53:46 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/25 17:51:28 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:12:59 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	run_simulation(t_table *table)
 			break ;
 		i++;
 	}
-	table->isready = true;
+	table->start = get_timestamp();
 	i = 0;
 	while (i < table->n_philo)
 	{

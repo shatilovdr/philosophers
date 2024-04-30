@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:44:41 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/25 17:29:07 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:26:29 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdbool.h>
-#include <unistd.h>
+# include <unistd.h> //usleep() only use it, move to philosophers.h
 
 void	*ft_calloc(size_t count, size_t size);
 int		ft_atoi(const char *str);
