@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:14:41 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/07 11:04:43 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:37:23 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ bool	init_mutexes(t_mutex **mutexes, int num);
 void	destroy_mutexes(t_mutex *mutexes, int num);
 void	free_table(t_table *table);
 bool	run_simulation(t_table *table);
+size_t	is_ready(t_table *table);
+void	*run_monitor(void *arg);
 void	*run_philosopher(void *arg);
 size_t	get_timestamp(void);
 
