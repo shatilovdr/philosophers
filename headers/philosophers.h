@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:14:41 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/30 15:17:50 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:04:43 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,19 @@ void	*run_philosopher(void *arg);
 size_t	get_timestamp(void);
 
 # ifndef EATING
-#  define EATING "\033[42mis eating\n\033[0m"
+#  define EATING " \033[42mis eating\033[0m\n"
 # endif
 
 # ifndef SLEEPING
-#  define SLEEPING "\033[44mis sleeping\n\033[0m"
+#  define SLEEPING " \033[44mis sleeping\033[0m\n"
 # endif
 
 # ifndef THINKING
-#  define THINKING "\033[45mis thinking\n\033[0m"
+#  define THINKING " \033[45mis thinking\033[0m\n"
+# endif
+
+# ifndef DIED
+#  define DIED "died\033[0m\n"
 # endif
 
 #endif
