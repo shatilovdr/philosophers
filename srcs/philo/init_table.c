@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:10:14 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/30 15:12:35 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:26:25 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static bool	init_philosophers(t_table *table);
 static bool	init_threads(t_table *table);
+static void	set_forks_order(t_philo *philo);
 
 bool	init_table(int argc, char **argv, t_table *table)
 {
@@ -21,13 +22,17 @@ bool	init_table(int argc, char **argv, t_table *table)
 
 	status = check_args(argc, argv, table);
 	if (status == true)
-		status = init_mutexes(&(table->forks), table->n_philo);
+		status = init_mutexes(&(table->mtx_forks), table->n_philo);
 	if (status == true)
-		status = init_mutexes(&(table->m_start), 1);
+		status = init_mutexes(&(table->mtx_table), 1);
+	if (status == true)
+		status = init_mutexes(&(table->mtx_philo), table->n_philo);
 	if (status == true)
 		status = init_philosophers(table);
 	if (status == true)
 		status = init_threads(table);
+	if (status == true)
+		table->finish = SIZE_MAX;
 	if (status == false)
 		free_table(table);
 	return (status);
@@ -47,9 +52,9 @@ static bool	init_philosophers(t_table *table)
 	while (i < table->n_philo)
 	{
 		philo[i].id = i;
-		philo[i].l_fork = &(table->forks[i]);
-		philo[i].r_fork = &(table->forks[(i - 1 + n_philo) % n_philo]);
 		philo[i].table = table;
+		set_forks_order(&philo[i]);
+		philo[i].mtx_philo = &table->mtx_philo[i];
 		i++;
 	}
 	table->philo = philo;
@@ -62,4 +67,25 @@ static bool	init_threads(t_table *table)
 	if (!table->threads)
 		return (false);
 	return (true);
+}
+
+static void	set_forks_order(t_philo *philo)
+{
+	t_table	*table;
+	int		n_philo;
+	int		id;
+
+	table = philo->table;
+	n_philo = table->n_philo;
+	id = philo->id;
+	if (philo->id != n_philo - 1)
+	{
+		philo->fork_1 = &(table->mtx_forks[id]);
+		philo->fork_2 = &(table->mtx_forks[(id - 1 + n_philo) % n_philo]);
+	}
+	else
+	{
+		philo->fork_1 = &(table->mtx_forks[(id - 1 + n_philo) % n_philo]);
+		philo->fork_2 = &(table->mtx_forks[id]);
+	}
 }
