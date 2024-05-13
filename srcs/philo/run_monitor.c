@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:43:26 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/13 15:03:49 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:01:57 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	*run_monitor(void *arg)
 		while (i < table->n_philo && status)
 			status = check_philo(&table->philo[i++]);
 	}
-	set_variable(table->mtx_table, &table->finish, 1);
 	return (NULL);
 }
 
@@ -41,9 +40,12 @@ static bool	check_philo(t_philo *philo)
 
 	curr = get_timestamp();
 	prev = get_variable(philo->mtx_philo, &philo->prev_meal);
+	if (prev == 0)
+		prev = philo->table->start;
 	if (curr - prev > 10)
 	{
-		printf("\033[41m%zu %d"DIED, curr, philo->id + 1);
+		print_log(philo->table, curr, philo->id, DIED);
+		exit(1);
 		return (false);
 	}
 	return (true);

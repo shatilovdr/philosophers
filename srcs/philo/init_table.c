@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:10:14 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/13 16:26:25 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:43:28 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ bool	init_table(int argc, char **argv, t_table *table)
 		status = init_philosophers(table);
 	if (status == true)
 		status = init_threads(table);
-	if (status == true)
-		table->finish = SIZE_MAX;
 	if (status == false)
 		free_table(table);
 	return (status);

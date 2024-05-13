@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:14:41 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/13 14:58:45 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:43:58 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ struct	s_table
 	int			n_meals;
 	t_mutex		*mtx_forks;
 	size_t		start;
-	size_t		finish;
+	bool		finished;
 	t_mutex		*mtx_table;
 	t_philo		*philo;
 	t_mutex		*mtx_philo;
@@ -60,21 +60,26 @@ void	set_variable(t_mutex *mutex, size_t *variable, size_t value);
 void	*run_monitor(void *arg);
 void	*run_philosopher(void *arg);
 size_t	get_timestamp(void);
+void	print_log(t_table *table, size_t timestamp, int id, char *mode);
 
 # ifndef EATING
-#  define EATING " \033[42mis eating\033[0m\n"
+#  define EATING "\033[42mis eating\033[0m\n"
 # endif
 
 # ifndef SLEEPING
-#  define SLEEPING " \033[44mis sleeping\033[0m\n"
+#  define SLEEPING "\033[44mis sleeping\033[0m\n"
 # endif
 
 # ifndef THINKING
-#  define THINKING " \033[45mis thinking\033[0m\n"
+#  define THINKING "\033[45mis thinking\033[0m\n"
 # endif
 
 # ifndef DIED
-#  define DIED " died\033[0m\n"
+#  define DIED "\033[41mdied\033[0m\n"
+# endif
+
+# ifndef FORK_TAKEN
+#  define FORK_TAKEN "\033[43mhas taken a fork\033[0m\n"
 # endif
 
 #endif
