@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:14:41 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/13 17:43:58 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:58:02 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILOSOPHERS_H
 
 # include "helpers.h"
+# include <unistd.h>
 # include <stdio.h>
 # include <pthread.h>
 # include <sys/time.h>
@@ -26,8 +27,8 @@ typedef struct s_philo
 	int				id;
 	t_mutex			*fork_1;
 	t_mutex			*fork_2;
-	int				n_meals;
-	size_t			prev_meal;
+	long			n_meals;
+	long			prev_meal;
 	t_mutex			*mtx_philo;
 	t_table			*table;
 }	t_philo;
@@ -38,10 +39,10 @@ struct	s_table
 	int			t_die;
 	int			t_eat;
 	int			t_sleep;
-	int			n_meals;
+	long		n_meals;
 	t_mutex		*mtx_forks;
-	size_t		start;
-	bool		finished;
+	long		start;
+	long		finished;
 	t_mutex		*mtx_table;
 	t_philo		*philo;
 	t_mutex		*mtx_philo;
@@ -55,31 +56,32 @@ bool	init_mutexes(t_mutex **mutexes, int num);
 void	destroy_mutexes(t_mutex *mutexes, int num);
 void	free_table(t_table *table);
 bool	run_simulation(t_table *table);
-size_t	get_variable(t_mutex *mutex, size_t *variable);
-void	set_variable(t_mutex *mutex, size_t *variable, size_t value);
+long	get_value(t_mutex *mutex, long *variable);
+void	set_value(t_mutex *mutex, long *variable, long value);
 void	*run_monitor(void *arg);
 void	*run_philosopher(void *arg);
-size_t	get_timestamp(void);
-void	print_log(t_table *table, size_t timestamp, int id, char *mode);
+long	get_timestamp(void);
+void	print_log(t_table *table, long timestamp, int id, char *mode);
+void	ft_usleep(int msec);
 
 # ifndef EATING
-#  define EATING "\033[42mis eating\033[0m\n"
+#  define EATING "\033[42m\033[30mis eating\033[0m\n"
 # endif
 
 # ifndef SLEEPING
-#  define SLEEPING "\033[44mis sleeping\033[0m\n"
+#  define SLEEPING "\033[46m\033[30mis sleeping\033[0m\n"
 # endif
 
 # ifndef THINKING
-#  define THINKING "\033[45mis thinking\033[0m\n"
+#  define THINKING "\033[45m\033[30mis thinking\033[0m\n"
 # endif
 
 # ifndef DIED
-#  define DIED "\033[41mdied\033[0m\n"
+#  define DIED "\033[41m\033[30mdied\033[0m\n"
 # endif
 
 # ifndef FORK_TAKEN
-#  define FORK_TAKEN "\033[43mhas taken a fork\033[0m\n"
+#  define FORK_TAKEN "\033[43m\033[30mhas taken a fork\033[0m\n"
 # endif
 
 #endif

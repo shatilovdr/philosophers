@@ -6,15 +6,15 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:37:38 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/13 11:54:50 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:14:45 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/philosophers.h"
 
-size_t	get_variable(t_mutex *mutex, size_t *variable)
+long	get_value(t_mutex *mutex, long *variable)
 {
-	size_t	value;
+	long	value;
 
 	pthread_mutex_lock(mutex);
 	value = *variable;
@@ -22,7 +22,7 @@ size_t	get_variable(t_mutex *mutex, size_t *variable)
 	return (value);
 }
 
-void	set_variable(t_mutex *mutex, size_t *variable, size_t value)
+void	set_value(t_mutex *mutex, long *variable, long value)
 {
 	pthread_mutex_lock(mutex);
 	*variable = value;

@@ -6,47 +6,72 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:43:26 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/13 18:01:57 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:26:32 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/philosophers.h"
 
 static bool	check_philo(t_philo *philo);
+static bool	check_if_all_full(t_philo *philo, int *n_full);
 
 void	*run_monitor(void *arg)
 {
 	t_table	*table;
+	t_philo	*philo;
 	int		i;
-	bool	status;
+	int		n_full;
 
 	table = (t_table *)arg;
-	while (get_variable(table->mtx_table, &table->start) == 0)
+	while (get_value(table->mtx_table, &table->start) == 0)
 		continue ;
-	status = true;
-	while (status)
+	while (true)
 	{
 		i = 0;
-		while (i < table->n_philo && status)
-			status = check_philo(&table->philo[i++]);
+		n_full = 0;
+		while (i < table->n_philo)
+		{
+			philo = &table->philo[i++];
+			if (check_if_all_full(philo, &n_full) == true)
+				return (NULL);
+			if (check_philo(philo) == false)
+				return (NULL);
+		}
 	}
 	return (NULL);
 }
 
 static bool	check_philo(t_philo *philo)
 {
-	size_t	curr;
-	size_t	prev;
+	long	curr;
+	long	prev;
 
 	curr = get_timestamp();
-	prev = get_variable(philo->mtx_philo, &philo->prev_meal);
+	prev = get_value(philo->mtx_philo, &philo->prev_meal);
 	if (prev == 0)
 		prev = philo->table->start;
-	if (curr - prev > 10)
+	if (curr - prev > philo->table->t_die)
 	{
 		print_log(philo->table, curr, philo->id, DIED);
-		exit(1);
 		return (false);
 	}
 	return (true);
+}
+
+static bool	check_if_all_full(t_philo *philo, int *n_full)
+{
+	t_table	*table;
+
+	table = philo->table;
+	if (philo->table->n_meals == -1)
+		return (false);
+	if (get_value(philo->mtx_philo, &philo->n_meals)
+		>= philo->table->n_meals)
+		*n_full = *n_full + 1;
+	if (*n_full == philo->table->n_philo)
+	{
+		set_value(table->mtx_table, &table->finished, 1);
+		return (true);
+	}
+	return (false);
 }

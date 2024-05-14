@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 14:53:46 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/13 18:00:11 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:56:13 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ bool	run_simulation(t_table *table)
 		; //stop
 	table->start = get_timestamp();
 	i = 0;
+	pthread_join(monitor, NULL);
 	while (i < table->n_philo)
 	{
 		pthread_join(threads[i], NULL);

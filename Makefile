@@ -11,14 +11,14 @@ RED				:=	\033[41m
 EC				:=	\033[0m
 
 # HELPERS
-HELPERS_NAME	:=	ft_calloc.c ft_atoi.c ft_isdigit.c ft_isspace.c
+HELPERS_NAME	:=	ft_calloc.c ft_atoi.c ft_isdigit.c ft_isspace.c ft_strcmp.c
 HELPERS_PATH	:=	helpers/
 HELPERS			:=	$(addprefix $(HELPERS_PATH), $(HELPERS_NAME))
 
 # PHILO
 PHILO_NAME		:=	main.c init_table.c check_args.c check_arg.c init_destroy_mutexes.c free_table.c \
 					run_simulation.c run_philosopher.c get_timestamp.c getters_setters.c run_monitor.c \
-					print_log.c
+					print_log.c ft_usleep.c
 PHILO_PATH		:=	philo/
 PHILO			:=	$(addprefix $(PHILO_PATH), $(PHILO_NAME))
 
