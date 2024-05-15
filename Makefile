@@ -3,7 +3,8 @@ NAME			:=	philo
 
 # COMPILER
 CC				:=	cc
-FLAGS			:=	-Wall -Wextra -Werror -g
+FLAGS			:=	-Wall -Wextra -Werror -g 
+DFLAGS			:=	-fsanitize=undefined,thread -pthread
 
 # COLORS
 GREEN			:=	\033[32m
@@ -61,4 +62,8 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+debug: $(OBJS_PATH) $(OBJS) $(HEADERS)
+	@cc $(FLAGS) $(DFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
+	@echo "$(GREEN)$(NAME)_DUBUG created successfully!$(EC)"
+
+.PHONY: all clean fclean re debug

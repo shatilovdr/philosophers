@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:10:14 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/13 17:43:28 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:53:45 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ bool	init_table(int argc, char **argv, t_table *table)
 	bool	status;
 
 	status = check_args(argc, argv, table);
+	if (status == true)
+	{
+		table->t_wait = (table->t_die - (table->t_eat + table->t_sleep)) / 2;
+		if (table->t_wait < 0)
+			table->t_wait = 0;
+	}
 	if (status == true)
 		status = init_mutexes(&(table->mtx_forks), table->n_philo);
 	if (status == true)
@@ -61,9 +67,15 @@ static bool	init_philosophers(t_table *table)
 
 static bool	init_threads(t_table *table)
 {
+	table->monitor = ft_calloc(1, sizeof(t_philo));
+	if (!table->monitor)
+		return (false);
 	table->threads = ft_calloc(table->n_philo, sizeof(t_philo));
 	if (!table->threads)
+	{
+		free(table->monitor);
 		return (false);
+	}
 	return (true);
 }
 

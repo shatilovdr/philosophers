@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 22:11:10 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/25 18:18:08 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:12:06 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ int	main(int argc, char **argv)
 	table = (t_table){0};
 	status = init_table(argc, argv, &table);
 	if (status == true)
+	{
 		status = run_simulation(&table);
+		free_table(&table);
+	}
 	return (status != true);
 }

@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 22:28:29 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/25 09:56:38 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:46:38 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	check_args(int argc, char **argv, t_table *table)
 {
 	if (argc != 5 && argc != 6)
 	{
-		printf("INVALID NUMBER OF ARGUMENTS!\nexit.\n");
+		write(STDERR_FILENO, "INVALID NUMBER OF ARGUMENTS!\nexit.\n", 35);
 		exit(1);
 	}
 	table->n_philo = check_arg(argv[1]);
@@ -27,10 +27,10 @@ bool	check_args(int argc, char **argv, t_table *table)
 		table->n_meals = check_arg(argv[5]);
 	else
 		table->n_meals = -1;
-	if (table->n_philo < 1 || table->t_die < 0 || table->t_eat < 0
-		|| table->t_sleep < 0 || (argc == 6 && table->n_meals < 0))
+	if (table->n_philo < 1 || table->t_die < 1 || table->t_eat < 1
+		|| table->t_sleep < 1 || (argc == 6 && table->n_meals < 1))
 	{
-		printf("Incorrect argument detected.\nexit.\n");
+		write(STDERR_FILENO, "Incorrect argument detected.\nexit.\n", 35);
 		exit(1);
 	}
 	return (true);
