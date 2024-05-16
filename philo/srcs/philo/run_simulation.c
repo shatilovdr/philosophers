@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 14:53:46 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/15 23:29:52 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/17 09:50:25 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,17 @@ int	run_simulation(t_table *table)
 		i++;
 	}
 	if (i == table->n_philo)
+	{
 		set_value(table->mtx_table, &table->start, get_timestamp());
+		pthread_join(*(table->monitor), NULL);
+		return (0);
+	}
 	else
+	{
 		set_value(table->mtx_table, &table->start, -1);
-	join_all(table, i);
-	if (i != table->n_philo)
+		join_all(table, i);
 		return (1);
-	return (0);
+	}
 }
 
 static void	join_all(t_table *table, int num)

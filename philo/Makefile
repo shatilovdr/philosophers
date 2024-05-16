@@ -64,6 +64,6 @@ re: fclean all
 
 debug: $(OBJS_PATH) $(OBJS) $(HEADERS)
 	@cc $(FLAGS) $(DFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
-	@echo "$(GREEN)$(NAME)_DUBUG created successfully!$(EC)"
+	@echo "$(GREEN)$(NAME)_DEBUG created successfully!$(EC)"
 
 .PHONY: all clean fclean re debug

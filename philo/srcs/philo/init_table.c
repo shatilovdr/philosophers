@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:10:14 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/16 13:53:45 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:49:30 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ static bool	init_philosophers(t_table *table)
 
 static bool	init_threads(t_table *table)
 {
-	table->monitor = ft_calloc(1, sizeof(t_philo));
+	table->monitor = ft_calloc(1, sizeof(pthread_t));
 	if (!table->monitor)
 		return (false);
-	table->threads = ft_calloc(table->n_philo, sizeof(t_philo));
+	table->threads = ft_calloc(table->n_philo, sizeof(pthread_t));
 	if (!table->threads)
 	{
 		free(table->monitor);

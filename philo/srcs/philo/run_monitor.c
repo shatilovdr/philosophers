@@ -6,13 +6,14 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:43:26 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/16 12:37:25 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/17 09:56:06 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/philosophers.h"
 
 static int	check_philo(t_philo *philo);
+static void	detach_all(t_table *table);
 
 void	*run_monitor(void *arg)
 {
@@ -24,13 +25,18 @@ void	*run_monitor(void *arg)
 		continue ;
 	if (table->start == -1)
 		return (NULL);
-	ft_usleep(table->t_die / 2);
+	ft_usleep(30);
 	while (true)
 	{
 		i = 0;
 		while (i < table->n_philo)
+		{
 			if (check_philo(&table->philo[i++]))
+			{
+				detach_all(table);
 				return (NULL);
+			}
+		}
 	}
 	return (NULL);
 }
@@ -53,9 +59,21 @@ static int	check_philo(t_philo *philo)
 	curr = get_timestamp();
 	if (curr - prev >= philo->table->t_die)
 	{
-		printf("%zu\t%d\t%s", curr - philo->table->start, philo->id + 1, DIED);
+		printf("%ld\t%d\t%s", curr - philo->table->start, philo->id + 1, DIED);
 		philo->table->finished = 1;
 	}
 	pthread_mutex_unlock(philo->table->mtx_table);
 	return (philo->table->finished);
+}
+
+static void	detach_all(t_table *table)
+{
+	int		i;
+
+	i = 0;
+	while (i < table->n_philo)
+	{
+		pthread_detach(table->threads[i]);
+		i++;
+	}
 }
