@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:06:21 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/16 14:26:19 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:34:34 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*run_philosopher(void *arg)
 		print_log(philo, get_timestamp(), THINKING);
 		pthread_mutex_lock(philo->fork_1);
 		print_log(philo, get_timestamp(), FORK_TAKEN);
-		ft_usleep(philo->table->t_die);
+		ft_usleep(philo->table->t_die, philo->table);
 		pthread_mutex_unlock(philo->fork_1);
 	}
 	else
@@ -46,15 +46,15 @@ static int	cycle_philosopher(t_philo *philo)
 	if (print_log(philo, get_timestamp(), THINKING) == 1)
 		return (1);
 	if (philo->id % 2 != 0 && philo->n_meals == 0)
-		ft_usleep(philo->table->t_eat / 2);
+		ft_usleep(philo->table->t_eat / 2, philo->table);
 	if (philo->table->n_philo % 2 != 0
 		&& philo->n_meals != 0)
-		ft_usleep(philo->table->t_wait);
+		ft_usleep(philo->table->t_wait, philo->table);
 	if (eat(philo) == 1)
 		return (1);
 	if (print_log(philo, get_timestamp(), SLEEPING) == 1)
 		return (1);
-	ft_usleep(philo->table->t_sleep);
+	ft_usleep(philo->table->t_sleep, philo->table);
 	return (0);
 }
 
@@ -93,7 +93,7 @@ static int	eat(t_philo *philo)
 	set_value(philo->mtx_philo, &philo->prev_meal, get_timestamp());
 	status = print_log(philo, philo->prev_meal, EATING);
 	if (status == 0)
-		ft_usleep(philo->table->t_eat);
+		ft_usleep(philo->table->t_eat, philo->table);
 	philo->n_meals++;
 	if (philo->n_meals == philo->table->n_meals)
 		update_n_full(philo->table);

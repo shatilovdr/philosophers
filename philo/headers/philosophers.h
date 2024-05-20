@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:14:41 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/16 10:55:54 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:33:31 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	*run_monitor(void *arg);
 void	*run_philosopher(void *arg);
 long	get_timestamp(void);
 int		print_log(t_philo *philo, long timestamp, char *mode);
-void	ft_usleep(int msec);
+void	ft_usleep(int msec, t_table *table);
 
 # ifndef EATING
 #  define EATING "\033[42m\033[30mis eating\033[0m\n"
