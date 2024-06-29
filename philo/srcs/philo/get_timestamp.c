@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 18:09:02 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/14 11:11:19 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/29 19:34:15 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ long	get_timestamp(void)
 	long			timestamp;
 
 	gettimeofday(&curr_time, NULL);
-	timestamp = curr_time.tv_sec * 1000 + curr_time.tv_usec / 1000;
+	timestamp = curr_time.tv_sec * 1000000 + curr_time.tv_usec;
 	return (timestamp);
 }

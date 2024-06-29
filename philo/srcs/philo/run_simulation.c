@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 14:53:46 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/20 13:39:02 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/29 19:28:18 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	run_simulation(t_table *table)
 {
 	int	i;
 
-	if (pthread_create(table->monitor, NULL, run_monitor, (void *) table) != 0)
-		return (1);
+	// if (pthread_create(table->monitor, NULL, run_monitor, (void *) table) != 0)
+	// 	return (1);
 	i = 0;
 	while (i < table->n_philo)
 	{
