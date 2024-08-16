@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:10:14 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/16 21:49:30 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:48:02 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ bool	init_table(int argc, char **argv, t_table *table)
 	if (status == true)
 		status = init_mutexes(&(table->mtx_table), 1);
 	if (status == true)
-		status = init_mutexes(&(table->mtx_philo), table->n_philo);
-	if (status == true)
 		status = init_philosophers(table);
 	if (status == true)
 		status = init_threads(table);
@@ -58,7 +56,6 @@ static bool	init_philosophers(t_table *table)
 		philo[i].id = i;
 		philo[i].table = table;
 		set_forks_order(&philo[i]);
-		philo[i].mtx_philo = &table->mtx_philo[i];
 		i++;
 	}
 	table->philo = philo;

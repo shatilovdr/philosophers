@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:06:21 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/20 13:34:34 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:47:52 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,11 @@ static int	cycle_philosopher(t_philo *philo)
 static int	wait_start(t_philo *philo)
 {
 	t_table	*table;
-	long	start;
 
 	table = philo->table;
-	while (get_value(table->mtx_table, &table->start) == 0)
-		continue ;
-	start = table->start;
-	if (start == -1)
+	philo->prev_meal = get_value(table->mtx_table, &table->start);
+	if (philo->prev_meal == -1)
 		return (1);
-	set_value(philo->mtx_philo, &philo->prev_meal, start);
 	return (0);
 }
 
@@ -90,7 +86,7 @@ static int	eat(t_philo *philo)
 		pthread_mutex_unlock(philo->fork_2);
 		return (1);
 	}
-	set_value(philo->mtx_philo, &philo->prev_meal, get_timestamp());
+	set_value(philo->table->mtx_table, &philo->prev_meal, get_timestamp());
 	status = print_log(philo, philo->prev_meal, EATING);
 	if (status == 0)
 		ft_usleep(philo->table->t_eat, philo->table);

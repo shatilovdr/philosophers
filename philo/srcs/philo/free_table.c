@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 10:05:27 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/16 09:44:23 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:48:24 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	free_table(t_table *table)
 		destroy_mutexes(table->mtx_table, 1);
 	if (table->mtx_forks)
 		destroy_mutexes(table->mtx_forks, table->n_philo);
-	if (table->mtx_philo)
-		destroy_mutexes(table->mtx_philo, table->n_philo);
 	if (table->monitor)
 		free(table->monitor);
 	if (table->threads)

@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:43:26 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/20 13:39:59 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:38:18 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ void	*run_monitor(void *arg)
 	int		i;
 
 	table = (t_table *)arg;
-	while (get_value(table->mtx_table, &table->start) == 0)
-		continue ;
-	if (table->start == -1)
+	if (get_value(table->mtx_table, &table->start) == -1)
 		return (NULL);
 	ft_usleep(30, table);
 	while (true)
@@ -49,7 +47,7 @@ static int	check_philo(t_philo *philo)
 		pthread_mutex_unlock(philo->table->mtx_table);
 		return (1);
 	}
-	prev = get_value(philo->mtx_philo, &philo->prev_meal);
+	prev = philo->prev_meal;
 	if (prev == 0)
 		prev = philo->table->start;
 	curr = get_timestamp();

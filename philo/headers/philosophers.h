@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:14:41 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/20 13:33:31 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:48:10 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_philo
 	t_mutex			*fork_2;
 	long			n_meals;
 	long			prev_meal;
-	t_mutex			*mtx_philo;
 	t_table			*table;
 }	t_philo;
 
@@ -47,7 +46,6 @@ struct	s_table
 	t_philo		*philo;
 	t_mutex		*mtx_table;
 	t_mutex		*mtx_forks;
-	t_mutex		*mtx_philo;
 	pthread_t	*monitor;
 	pthread_t	*threads;
 };

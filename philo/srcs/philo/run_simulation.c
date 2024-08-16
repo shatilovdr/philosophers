@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 14:53:46 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/20 13:39:02 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/08/18 10:01:56 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ int	run_simulation(t_table *table)
 {
 	int	i;
 
+	pthread_mutex_lock(table->mtx_table);
 	if (pthread_create(table->monitor, NULL, run_monitor, (void *) table) != 0)
+	{
+		pthread_mutex_unlock(table->mtx_table);
 		return (1);
+	}
 	i = 0;
 	while (i < table->n_philo)
 	{
@@ -29,14 +33,14 @@ int	run_simulation(t_table *table)
 		i++;
 	}
 	if (i == table->n_philo)
-		set_value(table->mtx_table, &table->start, get_timestamp());
+		table->start = get_timestamp();
 	else
-		set_value(table->mtx_table, &table->start, -1);
+		table->start = -1;
+	pthread_mutex_unlock(table->mtx_table);
 	join_all(table, i);
 	if (i != table->n_philo)
 		return (1);
-	else
-		return (0);
+	return (0);
 }
 
 static void	join_all(t_table *table, int num)
